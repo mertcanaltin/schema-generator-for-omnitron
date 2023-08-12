@@ -10,23 +10,7 @@ export const componentTypes = {
     localizable_input_item: "Localizable Input",
   };
   
-  interface Properties {
-    required: boolean;
-    data_type: string;
-    choices?: { value: string; label: string }[];
-    display?: string;
-    multi?: boolean;
-    is_localizable?: boolean;
-    // Diğer özellikler buraya eklenebilir
-  }
-  
-  interface ComponentType {
-    type: string;
-    label: string;
-    properties: Properties;
-  }
-  
-  export const initialComponents: Record<string, ComponentType> = {
+  export const initialComponents = {
     input_item: {
       type: "input_item",
       label: "Input",
@@ -48,6 +32,7 @@ export const componentTypes = {
       label: "File",
       properties: {
         required: false,
+        data_type: "file",
       },
     },
     image_item: {
@@ -55,67 +40,7 @@ export const componentTypes = {
       label: "Image",
       properties: {
         required: false,
-      },
-    },
-    is_show: {
-      type: "is_show",
-      label: "Dropdown",
-      properties: {
-        required: false,
-        choices: [
-          {
-            value: "show",
-            label: "Gösterilsin",
-          },
-          {
-            value: "hidden",
-            label: "Gösterilmesin",
-          },
-        ],
-        data_type: "dropdown",
-      },
-    },
-    href_item: {
-      type: "href_item",
-      label: "Href",
-      properties: {
-        required: false,
-        data_type: "text",
-        display: "textarea",
-      },
-    },
-    img_item: {
-      type: "img_item",
-      label: "Image",
-      properties: {
-        required: false,
-      },
-    },
-    span_title: {
-      type: "span_title",
-      label: "HtmlEditor",
-      properties: {
-        required: false,
-        data_type: "text",
-        display: "html-editor",
-      },
-    },
-    multi_input_item: {
-      type: "multi_input_item",
-      label: "Multi Input",
-      properties: {
-        required: false,
-        data_type: "text",
-        multi: true,
-      },
-    },
-    localizable_input_item: {
-      type: "localizable_input_item",
-      label: "Localizable Input",
-      properties: {
-        required: false,
-        data_type: "text",
-        is_localizable: true,
+        data_type: "image",
       },
     },
   };
