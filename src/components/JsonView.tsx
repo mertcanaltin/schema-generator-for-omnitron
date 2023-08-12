@@ -68,10 +68,8 @@ const JsonView: React.FC<JsonViewProps> = ({ jsonView }) => {
 
 	const renderComponent = (component: any, index: number) => {
 		let renderedComponent = null;
-
-		const componentType = component.type as keyof typeof initialComponents;
-
-		switch (componentType) {
+	
+		switch (component.type) {
 			case 'input_item':
 				renderedComponent = renderInput(component, index);
 				break;
@@ -87,24 +85,27 @@ const JsonView: React.FC<JsonViewProps> = ({ jsonView }) => {
 			case 'is_show':
 				renderedComponent = renderDropdown(component, index);
 				break;
-			case 'href_item':
+			case 'href':
 				renderedComponent = renderHref(component, index);
 				break;
 			// Add cases for other component types here
-
+	
 			default:
 				break;
 		}
-
+	
+		const componentDefinition = initialComponents[component.type];
+	
 		return (
 			<div key={index} className="border rounded p-4 mb-4">
 				<div className="flex justify-between items-center mb-2">
-					<p className="text-lg font-semibold">{initialComponents[component.type].label}</p>
+					<p className="text-lg font-semibold">{componentDefinition ? componentDefinition.label : ''}</p>
 				</div>
 				{renderedComponent}
 			</div>
 		);
 	};
+	
 
 	return (
 		<div className="w-full md:w-1/2 p-8 overflow-y-auto">
