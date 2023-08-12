@@ -1,5 +1,5 @@
 import React from 'react';
-import { componentTypes } from '~/componentsConfig';
+import { initialComponents } from '~/componentsConfig';
 
 interface JsonViewProps {
   jsonView: string;
@@ -69,7 +69,7 @@ const JsonView: React.FC<JsonViewProps> = ({ jsonView }) => {
   const renderComponent = (component: any, index: number) => {
     let renderedComponent = null;
 
-    const componentType = component.type as keyof typeof componentTypes;
+    const componentType = component.type as keyof typeof initialComponents;
 
     switch (componentType) {
       case 'input_item':
@@ -99,7 +99,7 @@ const JsonView: React.FC<JsonViewProps> = ({ jsonView }) => {
     return (
       <div key={index} className="border rounded p-4 mb-4">
         <div className="flex justify-between items-center mb-2">
-          <p className="text-lg font-semibold">{componentTypes[componentType]}</p>
+          <p className="text-lg font-semibold">{initialComponents[componentType]}</p>
         </div>
         {renderedComponent}
       </div>
