@@ -89,7 +89,7 @@ const Home: React.FC = () => {
       <div className="w-1/2 p-8 bg-gray-200 overflow-y-auto"> 
         <h1 className="text-2xl font-semibold mb-4">JSON Preview</h1>
         <textarea
-          className="w-full h-48 bg-white border p-2 rounded"
+          className="w-full h-full bg-white border p-2 rounded"
           value={jsonView}
           readOnly
         />
