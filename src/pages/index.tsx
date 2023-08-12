@@ -1,27 +1,32 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { componentTypes, initialComponents } from '../componentsConfig';
 
 interface Component {
   id: string;
   type: string;
 }
 
-export default function Home() {
+const Home: React.FC = () => {
   const [components, setComponents] = useState<Component[]>([]);
   const [jsonView, setJsonView] = useState<string>('');
 
-  const handleComponentAdd = () => {
+  const handleComponentAdd = (type: string) => {
     const newComponent: Component = {
       id: new Date().getTime().toString(),
-      type: 'your-default-type',
+      type,
     };
 
-    setComponents((prevComponents) => [...prevComponents, newComponent]);
+    setComponents(prevComponents => [...prevComponents, newComponent]);
     updateJsonView();
   };
 
   const updateJsonView = () => {
-    setJsonView(JSON.stringify(components, null, 2));
+    const componentData = components.map(component => ({
+      ...initialComponents[component.type],
+      type: component.type,
+    }));
+    setJsonView(JSON.stringify(componentData, null, 2));
   };
 
   const handleDragEnd = (result: any) => {
@@ -36,30 +41,39 @@ export default function Home() {
   };
 
   return (
-    <div className="flex h-screen">
-      <div className="w-1/2 p-4 border-r">
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={handleComponentAdd}
-        >
-          Schema Component Added
-        </button>
-        <div className="mt-4">
+    <div className="flex h-screen bg-gray-100">
+      <div className="w-1/2 p-8 border-r bg-white">
+        <div className="mb-6">
+          <h1 className="text-2xl font-semibold mb-4">Component Types</h1>
+          <div className="flex flex-wrap gap-2">
+            {Object.keys(componentTypes).map(type => (
+              <button
+                key={type}
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+                onClick={() => handleComponentAdd(type)}
+              >
+                Add {componentTypes[type]}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div>
           <DragDropContext onDragEnd={handleDragEnd}>
             <Droppable droppableId="droppable" direction="vertical">
-              {(provided) => (
+              {provided => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   {components.map((component, index) => (
                     <Draggable key={component.id} draggableId={component.id} index={index}>
-                      {(provided) => (
+                      {provided => (
                         <div
                           className="bg-gray-200 p-2 mb-2 rounded cursor-move"
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                         >
-                          {/* Render your component UI here */}
-                          Type: {component.type}
+                          <p className="text-sm font-medium">
+                            {componentTypes[component.type]}
+                          </p>
                         </div>
                       )}
                     </Draggable>
@@ -71,9 +85,10 @@ export default function Home() {
           </DragDropContext>
         </div>
       </div>
-      <div className="w-1/2 p-4">
+      <div className="w-1/2 p-8">
+        <h1 className="text-2xl font-semibold mb-4">JSON Preview</h1>
         <textarea
-          className="w-full h-full border p-2"
+          className="w-full h-48 bg-white border p-2 rounded"
           value={jsonView}
           readOnly
         />
@@ -88,4 +103,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;
