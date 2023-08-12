@@ -43,7 +43,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <div className="w-1/2 p-8 border-r bg-white ">
+      <div className="w-1/2 p-8 border-r bg-white overflow-y-auto">
         <div className="mb-6">
           <h1 className="text-2xl font-semibold mb-4">Component Types</h1>
           <div className="flex flex-wrap gap-2">

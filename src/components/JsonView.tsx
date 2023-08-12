@@ -1,23 +1,9 @@
 import React from 'react';
+import { componentTypes } from '~/componentsConfig';
 
 interface JsonViewProps {
   jsonView: string;
 }
-
-export const componentTypes = {
-  input_item: "Input",
-  textarea_item: "Textarea",
-  file_item: "File",
-  image_item: "Image",
-  is_show: "Dropdown",
-  href_item: "Href",
-  img_item: "Image",
-  span_title: "HtmlEditor",
-  multi_input_item: "Multi Input",
-  localizable_input_item: "Localizable Input",
-  // Add other component types here
-};
-
 const JsonView: React.FC<JsonViewProps> = ({ jsonView }) => {
   const components = JSON.parse(jsonView || '[{}]');
 
@@ -118,7 +104,7 @@ const JsonView: React.FC<JsonViewProps> = ({ jsonView }) => {
   };
 
   return (
-    <div className="w-full md:w-1/2 p-8 overflow-y-auto"> {/* overflow-y-auto eklendi */}
+    <div className="w-full md:w-1/2 p-8 overflow-y-auto">
       <h1 className="text-2xl font-semibold mb-4">JSON View</h1>
       <div className="w-full space-y-4">
         {components.map((component: any, index: number) =>
