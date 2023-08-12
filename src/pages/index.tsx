@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { DroppableProvided } from 'react-beautiful-dnd';
+import { DroppableProvided } from '@types/react-beautiful-dnd';
 import { initialComponents } from '../componentsConfig';
 import JsonView from '~/components/JsonView';
 
