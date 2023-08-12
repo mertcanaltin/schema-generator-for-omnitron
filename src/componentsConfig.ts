@@ -2,7 +2,7 @@ export const componentTypes = {
     input_item: "Input",
     textarea_item: "Textarea",
     file_item: "File",
-    image_item: "Image",
+    img_item: "Image",
     is_show: "Dropdown",
     href_item: "Href",
     img_item: "Image",

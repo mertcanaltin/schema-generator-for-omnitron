@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { componentTypes, initialComponents } from '../componentsConfig';
-import JsonView from '~/components/JsonView'; // Adjust the path to the JsonView component
+import JsonView from '~/components/JsonView';
 
 interface Component {
   id: string;
@@ -19,7 +19,11 @@ const Home: React.FC = () => {
     };
 
     setComponents(prevComponents => [...prevComponents, newComponent]);
-    updateJsonView();
+  };
+
+  const handleComponentDelete = (index: number) => {
+    const updatedComponents = components.filter((_, i) => i !== index);
+    setComponents(updatedComponents);
   };
 
   const updateJsonView = () => {
@@ -38,8 +42,11 @@ const Home: React.FC = () => {
     reorderedComponents.splice(result.destination.index, 0, reorderedItem);
 
     setComponents(reorderedComponents);
-    updateJsonView();
   };
+
+  useEffect(() => {
+    updateJsonView();
+  }, [components]);
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -72,9 +79,18 @@ const Home: React.FC = () => {
                           {...draggableProvided.draggableProps}
                           {...draggableProvided.dragHandleProps}
                         >
-                          <p className="text-sm font-medium">
-                            {componentTypes[component.type]}
-                          </p>
+                          <div className="flex items-center justify-between">
+                            
+                            <p className="text-sm font-medium ml-2">
+                              {componentTypes[component.type]}
+                            </p>
+                            <button
+                              className="text-red-500 hover:text-red-700"
+                              onClick={() => handleComponentDelete(index)}
+                            >
+                              &#10006;
+                            </button>
+                          </div>
                         </div>
                       )}
                     </Draggable>

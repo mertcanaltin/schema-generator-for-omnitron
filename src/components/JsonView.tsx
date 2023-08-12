@@ -38,7 +38,7 @@ const JsonView: React.FC<JsonViewProps> = ({ jsonView }) => {
   const renderImage = (component: any, index: number) => (
     <img
       key={index}
-      src={component.src}
+      src={'https://avatars.githubusercontent.com/u/37827216?v=4'}
       alt={component.alt}
       className="rounded mb-2"
     />
@@ -80,13 +80,13 @@ const JsonView: React.FC<JsonViewProps> = ({ jsonView }) => {
       case 'file_item':
         renderedComponent = renderFile(component, index);
         break;
-      case 'image_item':
+      case 'img_item':
         renderedComponent = renderImage(component, index);
         break;
       case 'is_show':
         renderedComponent = renderDropdown(component, index);
         break;
-      case 'href_item':
+      case 'href':
         renderedComponent = renderHref(component, index);
         break;
       // Add cases for other component types here
