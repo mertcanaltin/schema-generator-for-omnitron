@@ -5,7 +5,6 @@ export const componentTypes = {
     img_item: "Image",
     is_show: "Dropdown",
     href_item: "Href",
-    img_item: "Image",
     span_title: "HtmlEditor",
     multi_input_item: "Multi Input",
     localizable_input_item: "Localizable Input",
