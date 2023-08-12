@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { componentTypes, initialComponents } from '../componentsConfig';
+import { initialComponents } from '../componentsConfig';
 import JsonView from '~/components/JsonView';
 
 interface Component {
@@ -54,13 +54,13 @@ const Home: React.FC = () => {
         <div className="mb-6">
           <h1 className="text-2xl font-semibold mb-4">Component Types</h1>
           <div className="flex flex-wrap gap-2">
-            {Object.keys(componentTypes).map(type => (
+            {Object.keys(initialComponents).map(type => (
               <button
                 key={type}
                 className="bg-blue-500 text-white px-4 py-2 rounded"
                 onClick={() => handleComponentAdd(type)}
               >
-                Add {componentTypes[type]}
+                Add {initialComponents[type]}
               </button>
             ))}
           </div>
@@ -82,7 +82,7 @@ const Home: React.FC = () => {
                           <div className="flex items-center justify-between">
                             
                             <p className="text-sm font-medium ml-2">
-                              {componentTypes[component.type]}
+                              {initialComponents[component.type]}
                             </p>
                             <button
                               className="text-red-500 hover:text-red-700"
