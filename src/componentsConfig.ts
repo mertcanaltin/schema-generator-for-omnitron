@@ -10,7 +10,23 @@ export const componentTypes = {
     localizable_input_item: "Localizable Input",
   };
   
-  export const initialComponents = {
+  interface Properties {
+    required: boolean;
+    data_type: string;
+    choices?: { value: string; label: string }[];
+    display?: string;
+    multi?: boolean;
+    is_localizable?: boolean;
+    // Diğer özellikler buraya eklenebilir
+  }
+  
+  interface ComponentType {
+    type: string;
+    label: string;
+    properties: Properties;
+  }
+  
+  export const initialComponents: Record<string, ComponentType> = {
     input_item: {
       type: "input_item",
       label: "Input",
@@ -103,6 +119,4 @@ export const componentTypes = {
       },
     },
   };
-
-  
   
