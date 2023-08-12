@@ -6,6 +6,7 @@ specifiers:
   '@types/node': ^18.16.0
   '@types/prettier': ^2.7.2
   '@types/react': ^18.2.6
+  '@types/react-beautiful-dnd': ^13.1.4
   '@types/react-dom': ^18.2.4
   '@typescript-eslint/eslint-plugin': 6.0.0
   '@typescript-eslint/parser': 6.0.0
@@ -36,6 +37,7 @@ devDependencies:
   '@types/node': 18.17.4
   '@types/prettier': 2.7.3
   '@types/react': 18.2.20
+  '@types/react-beautiful-dnd': 13.1.4
   '@types/react-dom': 18.2.7
   '@typescript-eslint/eslint-plugin': 6.0.0_frvmuvcyldludkxo3dt7527zky
   '@typescript-eslint/parser': 6.0.0_7haavtekmro7ptbnqmctjaodju
@@ -332,6 +334,12 @@ packages:
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+
+  /@types/react-beautiful-dnd/13.1.4:
+    resolution: {integrity: sha512-4bIBdzOr0aavN+88q3C7Pgz+xkb7tz3whORYrmSj77wfVEMfiWiooIwVWFR7KM2e+uGTe5BVrXqSfb0aHeflJA==}
+    dependencies:
+      '@types/react': 18.2.20
+    dev: true
 
   /@types/react-dom/18.2.7:
     resolution: {integrity: sha512-GRaAEriuT4zp9N4p1i8BDBYmEyfo+xQ3yHjJU4eiK5NDa1RmUZG+unZABUTK4/Ox/M+GaHwb6Ow8rUITrtjszA==}
