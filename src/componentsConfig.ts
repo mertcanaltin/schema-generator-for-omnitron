@@ -1,16 +1,15 @@
-export const componentTypes = {
-    input_item: "Input",
-    textarea_item: "Textarea",
-    file_item: "File",
-    img_item: "Image",
-    is_show: "Dropdown",
-    href_item: "Href",
-    span_title: "HtmlEditor",
-    multi_input_item: "Multi Input",
-    localizable_input_item: "Localizable Input",
-  };
+export interface ComponentProperties {
+    required: boolean;
+    data_type: string;
+  }
   
-  export const initialComponents = {
+  export interface ComponentDefinition {
+    type: string;
+    label: string;
+    properties: ComponentProperties;
+  }
+  
+  export const initialComponents: Record<string, ComponentDefinition> = {
     input_item: {
       type: "input_item",
       label: "Input",
