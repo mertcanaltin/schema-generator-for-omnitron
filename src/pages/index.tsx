@@ -36,12 +36,14 @@ const Home: React.FC = () => {
 
   const handleDragEnd = (result: any) => {
     if (!result.destination) return;
-
+  
     const reorderedComponents = Array.from(components);
-    const [reorderedItem] = reorderedComponents.splice(result.source.index, 1);
-    reorderedComponents.splice(result.destination.index, 0, reorderedItem);
-
-    setComponents(reorderedComponents);
+    const reorderedItem = reorderedComponents.splice(result.source.index, 1)[0];
+  
+    if (reorderedItem) {
+      reorderedComponents.splice(result.destination.index, 0, reorderedItem);
+      setComponents(reorderedComponents);
+    }
   };
 
   useEffect(() => {
