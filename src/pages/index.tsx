@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { componentTypes, initialComponents } from '../componentsConfig';
+import JsonView from '~/components/JsonView'; // Adjust the path to the JsonView component
 
 interface Component {
   id: string;
@@ -42,7 +43,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <div className="w-1/2 p-8 border-r bg-white">
+      <div className="w-1/2 p-8 border-r bg-white ">
         <div className="mb-6">
           <h1 className="text-2xl font-semibold mb-4">Component Types</h1>
           <div className="flex flex-wrap gap-2">
@@ -64,12 +65,12 @@ const Home: React.FC = () => {
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   {components.map((component, index) => (
                     <Draggable key={component.id} draggableId={component.id} index={index}>
-                      {provided => (
+                      {(draggableProvided) => (
                         <div
                           className="bg-gray-200 p-2 mb-2 rounded cursor-move"
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
+                          ref={draggableProvided.innerRef}
+                          {...draggableProvided.draggableProps}
+                          {...draggableProvided.dragHandleProps}
                         >
                           <p className="text-sm font-medium">
                             {componentTypes[component.type]}
@@ -85,7 +86,7 @@ const Home: React.FC = () => {
           </DragDropContext>
         </div>
       </div>
-      <div className="w-1/2 p-8">
+      <div className="w-1/2 p-8 bg-gray-200 overflow-y-auto"> 
         <h1 className="text-2xl font-semibold mb-4">JSON Preview</h1>
         <textarea
           className="w-full h-48 bg-white border p-2 rounded"
@@ -101,6 +102,7 @@ const Home: React.FC = () => {
           Copy JSON
         </button>
       </div>
+      <JsonView jsonView={jsonView} />
     </div>
   );
 };
