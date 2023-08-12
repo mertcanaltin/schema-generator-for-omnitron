@@ -62,8 +62,8 @@ const Home: React.FC = () => {
                 className="bg-blue-500 text-white px-4 py-2 rounded"
                 onClick={() => handleComponentAdd(type)}
               >
-                Add {initialComponents[type]}
-              </button>
+                Add {initialComponents[type]?.label}
+            </button>
             ))}
           </div>
         </div>
