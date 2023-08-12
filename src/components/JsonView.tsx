@@ -4,6 +4,7 @@ import { componentTypes } from '~/componentsConfig';
 interface JsonViewProps {
   jsonView: string;
 }
+
 const JsonView: React.FC<JsonViewProps> = ({ jsonView }) => {
   const components = JSON.parse(jsonView || '[{}]');
 
@@ -65,12 +66,12 @@ const JsonView: React.FC<JsonViewProps> = ({ jsonView }) => {
     />
   );
 
-  // Add render functions for other component types here
-
   const renderComponent = (component: any, index: number) => {
     let renderedComponent = null;
 
-    switch (component.type) {
+    const componentType = component.type as keyof typeof componentTypes;
+
+    switch (componentType) {
       case 'input_item':
         renderedComponent = renderInput(component, index);
         break;
@@ -86,7 +87,7 @@ const JsonView: React.FC<JsonViewProps> = ({ jsonView }) => {
       case 'is_show':
         renderedComponent = renderDropdown(component, index);
         break;
-      case 'href':
+      case 'href_item':
         renderedComponent = renderHref(component, index);
         break;
       // Add cases for other component types here
@@ -97,7 +98,9 @@ const JsonView: React.FC<JsonViewProps> = ({ jsonView }) => {
 
     return (
       <div key={index} className="border rounded p-4 mb-4">
-        <p className="text-lg font-semibold mb-2">{componentTypes[component.type]}</p>
+        <div className="flex justify-between items-center mb-2">
+          <p className="text-lg font-semibold">{componentTypes[componentType]}</p>
+        </div>
         {renderedComponent}
       </div>
     );
