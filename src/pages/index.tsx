@@ -70,11 +70,11 @@ const Home: React.FC = () => {
         <div>
           <DragDropContext onDragEnd={handleDragEnd}>
             <Droppable droppableId="droppable" direction="vertical">
-              {provided => (
+              {(provided: DroppableProvided) => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   {components.map((component, index) => (
                     <Draggable key={component.id} draggableId={component.id} index={index}>
-                      {(draggableProvided) => (
+                      {(draggableProvided: DraggableProvided) => (
                         <div
                           className="bg-gray-200 p-2 mb-2 rounded cursor-move"
                           ref={draggableProvided.innerRef}
@@ -82,9 +82,8 @@ const Home: React.FC = () => {
                           {...draggableProvided.dragHandleProps}
                         >
                           <div className="flex items-center justify-between">
-                            
                             <p className="text-sm font-medium ml-2">
-                              {initialComponents[component.type]}
+                              {initialComponents[component.type]?.label}
                             </p>
                             <button
                               className="text-red-500 hover:text-red-700"
